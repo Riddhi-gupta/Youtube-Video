@@ -1,0 +1,17 @@
+<!DOCTYPE html> 
+<html> 
+<body> 
+
+<h1>Your Very own Youtube video downloader</h1> 
+
+
+<form action="" method="post"> 
+{% csrf_token %} 
+
+<label for="link">Hey! It's Nice seeing you please enter URL:</label> 
+<input type="text" id="link" name="link"><br><br> 
+<input type="submit" value="Download"> 
+</form> 
+
+</body> 
+</html>
