@@ -23,5 +23,5 @@ def youtube(request):
 		stream.download() 
 
 		# returning HTML page 
-		return render(request, 'youtube.html') 
-	return render(request, 'youtube.html')
+		return render(request, 'index.html') 
+	return render(request, 'index.html')
