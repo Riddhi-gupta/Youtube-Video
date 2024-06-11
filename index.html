@@ -1,45 +1,45 @@
-<!DOCTYPE html> 
-<html> 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <style>
-.alert {
-  padding: 20px;
-  background-color: #d5bdaf;
-}
-
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.closebtn:hover {
-  color: black;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Downloader</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body> 
-
-<h1>Your Very own Youtube video downloader</h1> 
-
-
-<form action="" method="post"> 
-{% csrf_token %} 
-
-<label for="link">Hey! It's Nice seeing you please enter URL:</label> 
-<input type="text" id="link" name="link"><br><br> 
-<input type="submit" value="Download"> 
-</form> 
-<div class="alert">
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-  Your Youtube Video is downloded. ENJOY:).
+<body>
+<div class="container">
+    <h2>Video Downloader</h2>
+    <form method="POST" id="videoForm">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="url">Video URL:</label>
+            <input type="url" class="form-control" id="url" name="url" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Download</button>
+    </form>
+  //alert message after downloading
+    <div class="alert alert-success mt-3" id="successMessage" style="display: none;">
+        Video has been downloaded successfully!
+    </div>
 </div>
 
-  
-</body> 
+<script>
+    $(document).ready(function(){
+        $("#videoForm").on('submit', function(event){
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+            $.ajax({
+                url: "",
+                type: "POST",
+                data: $(this).serialize(),
+                success: function(response){
+                    $("#successMessage").show();
+                }
+            });
+        });
+    });
+</script>
+</body>
 </html>
